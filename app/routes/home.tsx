@@ -1,10 +1,28 @@
-import type { Route } from "../.react-router/types/app/routes/+types";
+// @ts-ignore
+import type { Route } from '../.react-router/types/app/routes/+types';
 import Navbar from "~/components/Navbar"
 import { resumes } from "../../Constantss";
 import {callback} from "fdir/dist/api/async";
 import ResumeCard from "~/components/ResumeCard"
+import {usePuterStore} from "~/lib/puter";
+
+import {useEffect} from "react";
+import {useNavigate} from "react-router";
+
 
 export function meta({}: Route.MetaArgs) {
+
+    // const {auth } = usePuterStore()
+    // const Navgate = useNavigate();
+    // useEffect(() => {
+    //     if(!auth.isAuthenticated){
+    //         Navgate('/auth?next=/')
+    //     }
+    // }, [auth.isAuthenticated]);
+
+
+
+
   return [
     { title: "Ai-Anylizer", description: "Ai-Anylizer for resumea " },
     { name: "description", content: "Welcome to React Router!" },
