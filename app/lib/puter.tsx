@@ -1,4 +1,5 @@
 import { create } from "zustand";
+import type {PdfConversionResult} from "~/lib/convertPdfToImg";
 
 declare global {
     interface Window {
@@ -47,6 +48,7 @@ interface PuterStore {
     error: string | null;
     puterReady: boolean;
     auth: {
+
         user: PuterUser | null;
         isAuthenticated: boolean;
         signIn: () => Promise<void>;
@@ -61,7 +63,7 @@ interface PuterStore {
             data: string | File | Blob
         ) => Promise<File | undefined>;
         read: (path: string) => Promise<Blob | undefined>;
-        upload: (file: File[] | Blob[]) => Promise<FSItem | undefined>;
+        upload: (file: File[]) => Promise<FSItem | undefined>;
         delete: (path: string) => Promise<void>;
         readDir: (path: string) => Promise<FSItem[] | undefined>;
     };

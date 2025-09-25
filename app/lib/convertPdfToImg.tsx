@@ -26,7 +26,7 @@ async function loadPdfJs(): Promise<any> {
 }
 
 export async function convertPdfToImage(
-    file: FSItem
+    file: File
 ): Promise<PdfConversionResult> {
     try {
         const lib = await loadPdfJs();

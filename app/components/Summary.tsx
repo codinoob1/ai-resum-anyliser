@@ -22,35 +22,19 @@ const Category = ({ title, score }: { title: string, score: number }) => {
 }
 
 const Summary = ({ feedback }: { feedback: Feedback }) => {
-    // Safety check - this should not be reached if parent component is working correctly
-    if (!feedback) {
-        return (
-            <div className="bg-white rounded-2xl shadow-md w-full p-4">
-                <p className="text-gray-500">No feedback data available</p>
-            </div>
-        );
+    const Summary = ({ feedback }: { feedback: Feedback }) => {
+        // console.log('Summary feedback:', feedback);
+        // console.log('toneAndStyle:', feedback.toneAndStyle);
+        // console.log('content:', feedback.content);
+        // console.log('structure:', feedback.structure);
+        // console.log('skills:', feedback.skills);
+
+        // rest of your component...
     }
-
-    // Extract scores safely with fallbacks
-    const overallScore = feedback.overallScore || 0;
-    const toneScore = feedback.toneAndStyle?.score || 0;
-    const contentScore = feedback.content?.score || 0;
-    const structureScore = feedback.structure?.score || 0;
-    const skillsScore = feedback.skills?.score || 0;
-
-    // Log for debugging
-    console.log('Summary component rendering with scores:', {
-        overallScore,
-        toneScore,
-        contentScore,
-        structureScore,
-        skillsScore
-    });
-
     return (
         <div className="bg-white rounded-2xl shadow-md w-full">
             <div className="flex flex-row items-center p-4 gap-8">
-                <ScoreGauge score={overallScore} />
+                <ScoreGauge score={feedback.overallScore} />
 
                 <div className="flex flex-col gap-2">
                     <h2 className="text-2xl font-bold">Your Resume Score</h2>
@@ -60,12 +44,11 @@ const Summary = ({ feedback }: { feedback: Feedback }) => {
                 </div>
             </div>
 
-            <Category title="Tone & Style" score={toneScore} />
-            <Category title="Content" score={contentScore} />
-            <Category title="Structure" score={structureScore} />
-            <Category title="Skills" score={skillsScore} />
+            <Category title="Tone & Style" score={feedback.toneAndStyle.score} />
+            <Category title="Content" score={feedback.content.score} />
+            <Category title="Structure" score={feedback.structure.score} />
+            <Category title="Skills" score={feedback.skills.score} />
         </div>
     )
 }
-
 export default Summary
