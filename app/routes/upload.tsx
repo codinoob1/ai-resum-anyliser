@@ -52,7 +52,7 @@ const Upload = () => {
             resumePath: uploadedFile.path,
             imagePath: uploadedImage.path,
             companyName, jobTitle, jobDescription,
-            feedback: '',
+            feedback: "",
         }
         await kv.set(`resume:${uuid}`, JSON.stringify(data));
 
@@ -68,11 +68,16 @@ const Upload = () => {
             ? feedback.message.content
             : feedback.message.content[0].text;
 
-        data.feedback = JSON.parse(feedbackText);
-        await kv.set(`resume:${uuid}`, JSON.stringify(data));
-        setStatusText('Analysis complete, redirecting...');
-        console.log(data);
-        navigate(`/resume/${uuid}`);
+        try{
+            data.feedback = JSON.parse(feedbackText);
+            await kv.set(`resume:${uuid}`, JSON.stringify(data));
+            setStatusText('Analysis complete, redirecting...');
+            console.log(data);
+            navigate(`/resume/${uuid}`);
+        }
+        catch (error) {
+            console.log(error);
+        }
     }
 
     const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
